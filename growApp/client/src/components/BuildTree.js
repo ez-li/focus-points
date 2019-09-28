@@ -23,13 +23,6 @@ export default class BuildTree extends Component {
       <View style={{padding: 20}}>
 
         <View style={{padding: 20}}>
-          <Text>
-            focus flowers{"\n"}
-            don't lose focus!
-          </Text>
-        </View>      
-
-        <View style={{padding: 20}}>
           <Slider
             style={styles.timeSlider}
             minimumValue={0}

@@ -10,4 +10,4 @@ npm-debug.*
 web-build/
 web-report/
 package-lock.json
-screens/notes.js
+notes.js
