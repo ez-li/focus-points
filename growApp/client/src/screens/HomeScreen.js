@@ -14,6 +14,13 @@ export default class HomeScreen extends React.Component {
           don't lose focus! 
         </Text>
 
+        <View style={styles.treeContainer}>
+          <Image
+            source={require('../../assets/images/tree.png')}
+            style={{ height: 40 }}
+          />
+        </View>
+
         <BuildTree/>
         
         <Button
@@ -32,6 +39,11 @@ const styles = StyleSheet.create({
   appTitle: {
     textAlign: 'center',
     fontSize: 19
+  },
+  treeContainer: {
+    alignItems: 'center',
+    marginTop: 10,
+    marginBottom: 10,
   },
   startButton: {
     

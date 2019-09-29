@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Button, Text, View, StyleSheet} from 'react-native';
-import BuildTree from '../components/BuildTree.js';
+import Tree from '../components/Tree.js';
 
 export default class HomeScreen extends React.Component {
   render() {
@@ -9,18 +9,9 @@ export default class HomeScreen extends React.Component {
         <Text style={styles.appTitle}>
           FOCUS{"\n"}
         </Text> 
-        <Text style={{textAlign: 'center'}}>
-          don't lose focus! 
-        </Text>
 
-        <View style={{marginBottom:-10}}>
-          <BuildTree/>
-        </View>
+        <Tree/>
 
-        <Button
-          title="start"
-          onPress={() => this.props.navigation.navigate('TreeScreen')}
-        /> 
       </View>
     );
   }
