@@ -6,24 +6,22 @@ export default class HomeScreen extends React.Component {
   render() {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-
         <Text style={styles.appTitle}>
-          focus flowers{"\n"}
+          FOCUS{"\n"}
         </Text> 
         <Text style={{textAlign: 'center'}}>
           don't lose focus! 
         </Text>
 
-        <BuildTree/>
-        
+        <View style={{marginBottom:-10}}>
+          <BuildTree/>
+        </View>
+
         <Button
-          style={styles.startButton}
           title="start"
           onPress={() => this.props.navigation.navigate('TreeScreen')}
         /> 
-
       </View>
-
     );
   }
 }
@@ -31,9 +29,7 @@ export default class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   appTitle: {
     textAlign: 'center',
-    fontSize: 19
+    fontSize: 19,
+    paddingTop: 40
   },
-  startButton: {
-    
-  }
 });
