@@ -20,10 +20,10 @@ export default class HomeScreen extends React.Component {
           <BuildTree/>
         </View>
 
-        <Button
+        {/* <Button
           title="start"
           onPress={() => this.props.navigation.navigate(FocusTree)}
-        />
+        /> */}
       </View>
     );
   }
