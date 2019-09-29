@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-native-slider';
-import { View, TextInput, StyleSheet, Text, Switch } from 'react-native';
+import { Image, View, TextInput, StyleSheet, Text, Switch } from 'react-native';
 
 export default class BuildTree extends Component {
   constructor(props) {
@@ -15,16 +15,21 @@ export default class BuildTree extends Component {
 
   render() {
     return (
-      <View style={{ justifyContent: 'center' }}>
-        <Image
+        <View style={{ alignItems: 'center'}}>
+
+          <Image
+            style={styles.treeImage}
             source={require('../../assets/images/tree.png')}
-            style={{ height: 40 }}
           />
-      </View>
+        </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-
+  treeImage: {
+    marginTop: 40,
+    width: 350,
+    height: 350
+  },
 });

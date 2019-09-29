@@ -22,7 +22,7 @@ export default class BuildTree extends Component {
     return (
       <View style={{ justifyContent: 'center' }}>
 
-        <View style={{padding: 15}}>
+        <View style={{marginTop: -42, padding: 15, alignItems: 'center'}}>
           <Slider
             style={styles.timeSlider}
             minimumValue={0}
