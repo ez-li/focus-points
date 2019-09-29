@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "growAPp",
+    "name": "growApp",
     "entryPoint": "./client/src/App.js",
     "slug": "growApp",
     "privacy": "public",

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-native-slider';
-import { Text, TextInput, View, Switch, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet, Text, Switch } from 'react-native';
 
 export default class BuildTree extends Component {
   constructor(props) {
@@ -20,9 +20,9 @@ export default class BuildTree extends Component {
 
   render() {
     return (
-      <View style={{padding: 20}}>
+      <View style={{ justifyContent: 'center' }}>
 
-        <View style={{padding: 20}}>
+        <View style={{padding: 15}}>
           <Slider
             style={styles.timeSlider}
             minimumValue={0}
@@ -31,30 +31,31 @@ export default class BuildTree extends Component {
             value={this.state.timeout}
             onValueChange={timeout => this.setState({ timeout })}
           />
-          <Text>
+          <Text style={{textAlign: 'center'}}>
             {this.state.timeout} minutes
           </Text>
         </View>
 
-        <View style={{padding: 20}}>
+        <View style={{padding: 15}}>
           <TextInput
             style={styles.zipcodeInput}
             placeholder="enter zipcode"
             keyboardType={'numeric'}
             onChangeText={(zipcode) => this.setState({zipcode})}
             value={this.state.zipcode}
+            maxLength={5}
           />
         </View>
 
-        <View style={{padding: 20}}>
+        <View style={{padding: 15, alignItems: 'center'}}>
           <Switch
             style={styles.daySwitch}
             onValueChange={this._handleDaySwitch}
             value={this.state.nightMode}
           />
             { this.state.nightMode ? 
-            <Text>night mode</Text> : 
-            <Text>day mode</Text> }
+            <Text>night mode </Text> : 
+            <Text> day mode</Text> }
         </View>
 
       </View>
@@ -64,13 +65,15 @@ export default class BuildTree extends Component {
 
 const styles = StyleSheet.create({
   timeSlider: {
-    justifyContent: "center"
+    textAlign: 'center',
+    width: 250
   },
   zipcodeInput: {
-    height: 40
+    paddingTop: 5,
+    textAlign: 'center'
   },
   daySwitch: {
-    justifyContent: "left",
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    marginBottom: 10
   }
 });
