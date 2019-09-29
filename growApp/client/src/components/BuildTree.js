@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
 import Slider from 'react-native-slider';
-import { Text, TextInput, View, StyleSheet } from 'react-native';
-// import ZipCode from './SetZipCode.js';
-// import TimeOut from './SetTimeOut.js';
+import { Text, TextInput, View, Switch, StyleSheet } from 'react-native';
 
 export default class BuildTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        timeout: 0,
+        timeout: 20,
         zipcode: '',
-        currentTime: ''
+        currentTime: '',
+        nightMode: false
     };
   }
 
+  _handleDaySwitch = () =>
+  this.setState(state => ({
+    nightMode: !state.nightMode,
+  }));
+
   render() {
     return (
-      <View style={{padding: 20}}>        
+      <View style={{padding: 20}}>
 
         <View style={{padding: 20}}>
           <Slider
-            // style={styles.sliderContainer}
+            style={styles.timeSlider}
             minimumValue={0}
             maximumValue={120}
             step={1}
@@ -34,12 +38,23 @@ export default class BuildTree extends Component {
 
         <View style={{padding: 20}}>
           <TextInput
-            // style={styles.zipcodeInput}
-            placeholder="enter Zipcode"
+            style={styles.zipcodeInput}
+            placeholder="enter zipcode"
             keyboardType={'numeric'}
             onChangeText={(zipcode) => this.setState({zipcode})}
             value={this.state.zipcode}
           />
+        </View>
+
+        <View style={{padding: 20}}>
+          <Switch
+            style={styles.daySwitch}
+            onValueChange={this._handleDaySwitch}
+            value={this.state.nightMode}
+          />
+            { this.state.nightMode ? 
+            <Text>night mode</Text> : 
+            <Text>day mode</Text> }
         </View>
 
       </View>
@@ -48,17 +63,14 @@ export default class BuildTree extends Component {
 }
 
 const styles = StyleSheet.create({
-  sliderContainer: {
-    flex: 1,
-    // marginTop: 20,
-    marginLeft: 10,
-    marginRight: 10,
+  timeSlider: {
     justifyContent: "center"
   },
   zipcodeInput: {
-    // marginLeft: 10,
-    // marginBottom: 20,
     height: 40
+  },
+  daySwitch: {
+    justifyContent: "left",
+    backgroundColor: '#fff'
   }
-
 });
