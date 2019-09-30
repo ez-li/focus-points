@@ -6,11 +6,20 @@ export default class BuildTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        timeout: 20,
+        timeout: 60,
         zipcode: '',
-        currentTime: '',
         nightMode: false
     };
+  }
+
+  componentDidMount() {
+    this.props.treeBuilder(this.state);
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state !== prevState) {
+      this.props.treeBuilder(this.state);
+    }
   }
 
   _handleDaySwitch = () =>
@@ -22,7 +31,7 @@ export default class BuildTree extends Component {
     return (
       <View style={{ justifyContent: 'center' }}>
 
-        <View style={{padding: 15}}>
+        <View style={{marginTop: -42, padding: 15, alignItems: 'center'}}>
           <Slider
             style={styles.timeSlider}
             minimumValue={0}

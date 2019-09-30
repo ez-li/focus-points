@@ -2,31 +2,39 @@ import React from 'react';
 import { Image, Button, Text, View, StyleSheet} from 'react-native';
 import BuildTree from '../components/BuildTree.js';
 
+
+let treeBuild = {};
 export default class HomeScreen extends React.Component {
+
+  treeBuilder = (state) => {
+    treeBuild = state;
+  }
+
   render() {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+      <View>
 
         <Text style={styles.appTitle}>
-          focus flowers{"\n"}
+          focus flowers
         </Text> 
         <Text style={{textAlign: 'center'}}>
           don't lose focus! 
         </Text>
 
-        <View style={styles.treeContainer}>
+        <View style={{alignItems: 'center', paddingTop: 15}}>
           <Image
+            style={styles.treeImage}
             source={require('../../assets/images/tree.png')}
-            style={{ height: 40 }}
           />
         </View>
 
-        <BuildTree/>
+        <BuildTree treeBuilder={this.treeBuilder}/>
         
         <Button
-          style={styles.startButton}
           title="start"
-          onPress={() => this.props.navigation.navigate('TreeScreen')}
+          onPress={() => this.props.navigation.navigate('TreeScreen', {
+            treeBuild: treeBuild
+          })}
         /> 
 
       </View>
@@ -37,15 +45,15 @@ export default class HomeScreen extends React.Component {
 
 const styles = StyleSheet.create({
   appTitle: {
+    paddingTop: 25,
     textAlign: 'center',
-    fontSize: 19
+    fontSize: 18
   },
-  treeContainer: {
-    alignItems: 'center',
-    marginTop: 10,
-    marginBottom: 10,
+  treeImage: {
+    width: 200,
+    height: 200
   },
   startButton: {
-    
+    backgroundColor: '#fff'
   }
 });
