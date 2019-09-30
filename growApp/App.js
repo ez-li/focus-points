@@ -1,7 +1,7 @@
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { AppRegistry, Platform, StatusBar, StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import AppNavigator from './client/src/navigation/AppNavigator';
 
 const DismissKeyboard = ({ children }) => (
@@ -12,7 +12,7 @@ const DismissKeyboard = ({ children }) => (
 
 export default function App(props) {
     return (
-
+      
       <DismissKeyboard>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
@@ -36,3 +36,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 });
+
+AppRegistry.registerComponent('main',() => App);
+
