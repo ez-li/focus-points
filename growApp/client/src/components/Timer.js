@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Image, Button, Text, View, StyleSheet} from 'react-native';
 
 export default class Timer extends React.Component {
@@ -6,7 +6,8 @@ export default class Timer extends React.Component {
     super(props);
     this.state = {
       timer: 60,
-      timout: this.props
+      timeout: 0,
+      startTimer: false
     };
   }
   componentDidMount() {
@@ -15,22 +16,28 @@ export default class Timer extends React.Component {
     }, 1000);
   }
   decrementClock = () => {   
-    if (this.state.timer === 0) {
+    if (this.state.timeout === 1) {
       clearInterval(this.clockCall);
     }   
-    this.setState((prevstate) => ({ timer: prevstate.timer-1 }));
+    this.setState((prevstate) => ({ timeout: prevstate.timeout-1 }));
   };
-
   render() {
-    let timeout = this.props.treeBuild.timeout;    
+    let timeout = this.props.treeBuild.timeout;
     return (
       <View style={{ justifyContent: 'center' }}>
-
+        
         <Text style={{ paddingTop: 80, textAlign: 'center' }}>
-          time to focus: {this.state.timer} min
-          time to focus: {this.state.timeout} min
-          time to focus: {timeout} min
+          {this.state.startTimer ? 
+            'time to focus: '+ this.state.timeout + ' min' + '\n' : 
+            null}
         </Text>
+        
+        {this.state.startTimer ? null : 
+          <Button
+          title="begin"
+          onPress={() => this.setState({ timeout: timeout, startTimer: true })}
+          />
+        }
 
       </View>
     );
