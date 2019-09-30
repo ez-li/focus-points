@@ -91,9 +91,8 @@ const styles = StyleSheet.create({
   flowersContainer: {
     position: 'absolute',
     marginTop: 50,
-    marginLeft: 50, 
-    marginRight: 50,
-    width: 300,
+    marginLeft: 25, 
+    width: 290,
     height: 160
   },
   flowers: {
