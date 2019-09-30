@@ -6,14 +6,42 @@ export default class BuildTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        timeout: 20,
-        zipcode: '',
-        currentTime: '',
-        nightMode: false
     };
   }
 
   render() {
+
+    let timeout = this.props.treeBuild.timeout;
+    const flowers = [];
+    const images = [];
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b1.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b2.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b3.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b4.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b5.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b6.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b7.png')}/>);
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b8.png')}/>);
+
+    for (let i = 0; i < timeout; i++) {
+      let xP = '' + Math.floor(Math.random()*100) + '%';
+      let yP = '' + Math.floor(Math.random()*100) + '%';
+      let flower = images[Math.floor(Math.random()*images.length)];
+      flowers.push(
+        <View 
+        key={i}
+        style={{ 
+          position: 'absolute',
+          zIndex: 99,
+          left: xP,
+          top: yP
+          }}
+        >
+          { flower }
+        </View>
+      )
+    }
+
     return (
         <View style={{ alignItems: 'center'}}>
 
@@ -21,6 +49,15 @@ export default class BuildTree extends Component {
             style={styles.treeImage}
             source={require('../../assets/images/tree.png')}
           />
+
+          <View style={styles.flowersContainer}>
+            { flowers }
+          </View>
+
+          <Text>
+          {JSON.stringify(this.props.treeBuild.timeout)}
+          </Text>
+
         </View>
     );
   }
@@ -32,4 +69,17 @@ const styles = StyleSheet.create({
     width: 350,
     height: 350
   },
+  flowersContainer: {
+    position: 'absolute',
+    marginTop: 50,
+    marginLeft: 50, 
+    marginRight: 50,
+    width: 300,
+    height: 160
+  },
+  flowers: {
+    zIndex: 1,
+    width: 30,
+    height: 30
+  }
 });

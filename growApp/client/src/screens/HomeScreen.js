@@ -3,10 +3,10 @@ import { Image, Button, Text, View, StyleSheet} from 'react-native';
 import BuildTree from '../components/BuildTree.js';
 
 
-const treeBuild = {};
+let treeBuild = {};
 export default class HomeScreen extends React.Component {
 
-  treeBuildState = (state) => {
+  treeBuilder = (state) => {
     treeBuild = state;
   }
 
@@ -32,7 +32,9 @@ export default class HomeScreen extends React.Component {
         
         <Button
           title="start"
-          onPress={() => this.props.navigation.navigate('TreeScreen')}
+          onPress={() => this.props.navigation.navigate('TreeScreen', {
+            treeBuild: treeBuild
+          })}
         /> 
 
       </View>

@@ -6,11 +6,20 @@ export default class BuildTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        timeout: 20,
+        timeout: 60,
         zipcode: '',
-        currentTime: '',
         nightMode: false
     };
+  }
+
+  componentDidMount() {
+    this.props.treeBuilder(this.state);
+  }
+
+  componentDidUpdate(prevState) {
+    if (this.state !== prevState) {
+      this.props.treeBuilder(this.state);
+    }
   }
 
   _handleDaySwitch = () =>
