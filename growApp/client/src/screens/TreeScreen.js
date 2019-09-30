@@ -9,7 +9,8 @@ export default class TreeScreen extends React.Component {
 		super(props);
     this.state = {
 			touchCount: 1,
-			timerStarted: false
+			timerStarted: false,
+			points: 0
 		};
 	}
 	handleOnPress = () => {
@@ -22,6 +23,14 @@ export default class TreeScreen extends React.Component {
 			timerStarted: true
 		})
 	}
+	countPoints = (numOfFlowersRemaining) => {
+		if (numOfFlowersRemaining < 0) {
+			return
+		}
+		this.setState({
+			points: numOfFlowersRemaining
+		})
+	}
   render() {
     const { navigation } = this.props;
     return (
@@ -32,12 +41,21 @@ export default class TreeScreen extends React.Component {
 						treeBuild={navigation.getParam('treeBuild')}
 						touchCount={this.state.touchCount}
 						timerStarted={this.state.timerStarted}
+						countPoints={this.countPoints}
 					/>
 
 					<Timer 
 						treeBuild={navigation.getParam('treeBuild')}
 						startTimer={this.startTimer}
 						/>
+					
+					{this.state.timerStarted ? 
+						<Text style={{textAlign:'center', marginTop:-15}}>
+							points: {this.state.points}
+						</Text> :
+					null
+					}
+
 
 				</View>
 			</TouchableWithoutFeedback>

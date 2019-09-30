@@ -24,9 +24,9 @@ export default class BuildTree extends Component {
           flowers: newFlowers,
           removedFlowers: state.removedFlowers + 1
         }));
+        this.props.countPoints(this.state.flowers.length - this.state.removedFlowers + 1)
       }
     }
-
   }
   makeFlowers() {
     let timeout = this.props.treeBuild.timeout;
@@ -76,10 +76,6 @@ export default class BuildTree extends Component {
         <View style={styles.flowersContainer}>
           { this.state.flowers }
         </View>
-
-        <Text>
-          {this.state.removedFlowers}
-        </Text>
         
       </View>
     );
