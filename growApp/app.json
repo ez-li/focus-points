@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "growApp",
-    "entryPoint": "./client/src/App.js",
+    "entryPoint": "App.js",
     "slug": "growApp",
     "privacy": "public",
     "sdkVersion": "35.0.0",
@@ -12,9 +12,9 @@
     ],
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./client/assets/images/icon.png",
+    "icon": "./client/assets/images/b1.png",
     "splash": {
-      "image": "./client/assets/images/splash.png",
+      "image": "./client/assets/images/tree.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

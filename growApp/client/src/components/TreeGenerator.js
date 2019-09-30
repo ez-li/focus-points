@@ -21,7 +21,7 @@ export default class BuildTree extends Component {
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b5.png')}/>);
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b6.png')}/>);
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b7.png')}/>);
-    images.push(<Image style={styles.flowers} source={require('../../assets/images/b8.png')}/>);
+
 
     for (let i = 0; i < timeout; i++) {
       let xP = '' + Math.floor(Math.random()*100) + '%';
@@ -53,11 +53,7 @@ export default class BuildTree extends Component {
           <View style={styles.flowersContainer}>
             { flowers }
           </View>
-
-          <Text>
-          {JSON.stringify(this.props.treeBuild.timeout)}
-          </Text>
-
+          
         </View>
     );
   }
@@ -79,7 +75,7 @@ const styles = StyleSheet.create({
   },
   flowers: {
     zIndex: 1,
-    width: 30,
-    height: 30
+    width: 27,
+    height: 27
   }
 });
