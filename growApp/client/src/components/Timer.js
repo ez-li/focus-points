@@ -11,6 +11,9 @@ export default class Timer extends React.Component {
     };
   }
   componentDidMount() {
+    if (this.state.startTimer) {
+      this.props.startTimer();
+    }
     this.clockCall = setInterval(() => {
       this.decrementClock();
     }, 1000);
@@ -35,7 +38,10 @@ export default class Timer extends React.Component {
         {this.state.startTimer ? null : 
           <Button
           title="begin"
-          onPress={() => this.setState({ timeout: timeout, startTimer: true })}
+          onPress={() => {
+            this.setState({ timeout: timeout, startTimer: true })
+            this.props.startTimer();
+          }}
           />
         }
 

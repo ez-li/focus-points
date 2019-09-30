@@ -6,11 +6,29 @@ export default class BuildTree extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      flowers: [],
+      removedFlowers: 0,
+      timerStarted: false
     };
   }
+  componentDidMount() {
+    this.makeFlowers();
+  }
+  componentDidUpdate() {
+    if (this.props.timerStarted) {
+      let count = this.props.touchCount;
+      if (count > this.state.removedFlowers) {
+        let newFlowers = this.state.flowers;
+        newFlowers.pop();
+        this.setState((state) => ({
+          flowers: newFlowers,
+          removedFlowers: state.removedFlowers + 1
+        }));
+      }
+    }
 
-  render() {
-
+  }
+  makeFlowers() {
     let timeout = this.props.treeBuild.timeout;
     const flowers = [];
     const images = [];
@@ -21,8 +39,8 @@ export default class BuildTree extends Component {
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b5.png')}/>);
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b6.png')}/>);
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b7.png')}/>);
-
-
+    images.push(<Image style={styles.flowers} source={require('../../assets/images/b8.png')}/>);
+  
     for (let i = 0; i < timeout; i++) {
       let xP = '' + Math.floor(Math.random()*100) + '%';
       let yP = '' + Math.floor(Math.random()*100) + '%';
@@ -41,20 +59,29 @@ export default class BuildTree extends Component {
         </View>
       )
     }
+    this.setState({
+      flowers: flowers
+    })
+  }
+  render() {
 
     return (
-        <View style={{ alignItems: 'center'}}>
+      <View style={{ alignItems: 'center'}}>
 
-          <Image
-            style={styles.treeImage}
-            source={require('../../assets/images/tree.png')}
-          />
+        <Image
+          style={styles.treeImage}
+          source={require('../../assets/images/tree.png')}
+        />
 
-          <View style={styles.flowersContainer}>
-            { flowers }
-          </View>
-          
+        <View style={styles.flowersContainer}>
+          { this.state.flowers }
         </View>
+
+        <Text>
+          {this.state.removedFlowers}
+        </Text>
+        
+      </View>
     );
   }
 }

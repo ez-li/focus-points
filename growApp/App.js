@@ -1,24 +1,15 @@
 import { AppLoading } from 'expo';
 import { Asset } from 'expo-asset';
 import React, { useState } from 'react';
-import { AppRegistry, Platform, StatusBar, StyleSheet, View, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { AppRegistry, Platform, StatusBar, StyleSheet, View } from 'react-native';
 import AppNavigator from './client/src/navigation/AppNavigator';
-
-const DismissKeyboard = ({ children }) => (
-  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-    {children}
-  </TouchableWithoutFeedback>
-);
 
 export default function App(props) {
     return (
-      
-      <DismissKeyboard>
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
           <AppNavigator />
         </View>
-      </DismissKeyboard>
   )
 }
 

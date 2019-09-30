@@ -1,7 +1,12 @@
 import React from 'react';
-import { Image, Button, Text, View, StyleSheet} from 'react-native';
+import { Image, Button, Text, View, StyleSheet, Keyboard, TouchableWithoutFeedback} from 'react-native';
 import BuildTree from '../components/BuildTree.js';
 
+const DismissKeyboard = ({ children }) => (
+  <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+    {children}
+  </TouchableWithoutFeedback>
+);
 
 let treeBuild = {};
 export default class HomeScreen extends React.Component {
@@ -12,6 +17,7 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+      <DismissKeyboard>
       <View>
 
         <Text style={styles.appTitle}>
@@ -38,7 +44,7 @@ export default class HomeScreen extends React.Component {
         /> 
 
       </View>
-
+      </DismissKeyboard>
     );
   }
 }
