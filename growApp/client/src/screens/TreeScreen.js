@@ -44,17 +44,19 @@ export default class TreeScreen extends React.Component {
 						countPoints={this.countPoints}
 					/>
 
+					<View style={{height:200}}>
 					<Timer 
 						treeBuild={navigation.getParam('treeBuild')}
 						startTimer={this.startTimer}
 						/>
 					
-					{this.state.timerStarted ? 
-						<Text style={{textAlign:'center', marginTop:-15}}>
-							points: {this.state.points}
-						</Text> :
-					null
-					}
+						{this.state.timerStarted ? 
+							<Text style={{textAlign:'center', marginTop:-15}}>
+								points: {this.state.points}
+							</Text> :
+						null
+						}
+					</View>
 
 
 				</View>
