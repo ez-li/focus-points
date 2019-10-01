@@ -9,15 +9,26 @@ const DismissKeyboard = ({ children }) => (
 );
 
 let treeBuild = {};
-let currWeather = [];
-let screenStyle = {};
+let weatherBgImage = [];
+let nightBgImage = [];
+let currWeather = '';
+// let screenStyle = {};
+let sendNightmode = false;
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       weather: '',
       background: [],
-      style: {}
+      nightBackground: [],
+      bgstyle: {},
+      nightMode: false,
+      textTitleStyle: {
+        paddingTop: 25,
+        textAlign: 'center',
+        fontSize: 18
+      },
+      textStyle: {textAlign: 'center'}
     };
   }
   setBackground = (weather) => {
@@ -37,19 +48,37 @@ export default class HomeScreen extends React.Component {
       weather: weather,
       background: backgroundImg
     })
-    currWeather = backgroundImg;
+    weatherBgImage = backgroundImg;
   }
   setNightMode = (bool) => {
     if (bool) {
-      let s = {backgroundColor: 'black', color: 'white'};
+      let b = {backgroundColor: 'black', color: 'white'};
+      let tts = {paddingTop: 25, textAlign: 'center', fontSize: 18, color: 'white'};
+      let ts = {textAlign: 'center', color: 'white'};
+      let nBg = [];
+      nBg.push(<ImageBackground source={require('../../assets/images/night1.png')} style={styles.nightBg} />);
       this.setState({
-        style: s
+        nightMode: true,
+        bgstyle: b,
+        textTitleStyle: tts,
+        textStyle: ts,
+        nightBackground: nBg
       })
+      nightBgImage = nBg;
+      sendNightmode = true;
     } else {
-      let s = {backgroundColor: 'white', color: 'black'};
+      let b = {backgroundColor: 'white', color: 'black'};
+      let tts = {paddingTop: 25, textAlign: 'center', fontSize: 18, color: 'black'};
+      let ts = {textAlign: 'center', color: 'black'};
       this.setState({
-        style: s
+        nightMode: false,
+        bgstyle: b,
+        textTitleStyle: tts,
+        textStyle: ts,
+        nightBackground: []
       })
+      nightBgImage = [];
+      sendNightmode = false;
     }
   }
   treeBuilder = (state) => {
@@ -57,25 +86,34 @@ export default class HomeScreen extends React.Component {
   }
   render() {
     return (
+      <View style={this.state.bgstyle}>
       <DismissKeyboard>
       <View>
 
         <View>
-        { this.state.background }
+          { this.state.nightBackground }
+          { this.state.background }
         </View>
 
-        <Text style={styles.appTitle}>
+        <Text style={this.state.textTitleStyle}>
           focus flowers
         </Text> 
-        <Text style={{textAlign: 'center'}}>
+        <Text style={this.state.textStyle}>
           don't lose focus! 
         </Text>
 
         <View style={{alignItems: 'center', paddingTop: 15}}>
+          {this.state.nightMode ? 
+          <Image
+            style={styles.treeImage}
+            source={require('../../assets/images/tree_night.png')}
+         />
+          :
           <Image
             style={styles.treeImage}
             source={require('../../assets/images/tree.png')}
           />
+          }
         </View>
 
         <BuildTree 
@@ -88,22 +126,20 @@ export default class HomeScreen extends React.Component {
           title="start"
           onPress={() => this.props.navigation.navigate('TreeScreen', {
             treeBuild: treeBuild,
-            background: currWeather
+            background: weatherBgImage,
+            nightBg: nightBgImage,
+            nightmode: sendNightmode
           })}
         /> 
 
       </View>
       </DismissKeyboard>
+      </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  appTitle: {
-    paddingTop: 25,
-    textAlign: 'center',
-    fontSize: 18
-  },
   treeImage: {
     width: 200,
     height: 200
@@ -113,8 +149,12 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',
     height: 800,
     width: 800
+  },
+  nightBg: {
+    flex: 1,
+    height: 800,
+    width: '100%'
   }
 });

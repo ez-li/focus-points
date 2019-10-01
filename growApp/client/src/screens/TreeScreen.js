@@ -10,8 +10,11 @@ export default class TreeScreen extends React.Component {
     this.state = {
 			touchCount: 0,
       timerStarted: false,
-      points: 0
+      points: 0,
+      nightmode: false
 		};
+  }
+  componentDidMount() {
   }
 	handleOnPress = () => {
 		this.setState((state) => ({
@@ -41,8 +44,8 @@ export default class TreeScreen extends React.Component {
     const { navigation } = this.props;
     return (
 			<TouchableWithoutFeedback onPress={() => this.handleOnPress()}>
-			
 				<View>
+          { navigation.getParam('nightBg') }
           <View style={styles.backgroundImage}>
             { navigation.getParam('background') }
           </View>
@@ -52,6 +55,7 @@ export default class TreeScreen extends React.Component {
               touchCount={this.state.touchCount}
               timerStarted={this.state.timerStarted}
               countPoints={this.countPoints}
+              nightmode={navigation.getParam('nightmode')}
             />
           </View>
 
@@ -60,6 +64,7 @@ export default class TreeScreen extends React.Component {
 							treeBuild={navigation.getParam('treeBuild')}
               startTimer={this.startTimer}
               timeUp={this.timeUp}
+              nightmode={navigation.getParam('nightmode')}
 							/>
               {this.state.timerStarted ? 
               <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', marginTop:-25}}>
@@ -67,12 +72,12 @@ export default class TreeScreen extends React.Component {
                 style={styles.smallImage}
                 source={require('../../assets/images/b1.png')}
                 />
-                <Text> = </Text>
+                <Text style={navigation.getParam('nightmode') ? {color:'white'} : {color:'black'} }> = </Text>
                 <Image
                 style={styles.smallImage}
                 source={require('../../assets/images/coin.png')}
                 />
-								<Text style={{textAlign:'center'}}>
+								<Text style={navigation.getParam('nightmode') ? {textAlign:'center',color:'white'} : {textAlign:'center',color:'black'} }>
 								 {' '}= points: {this.state.points}
 								</Text> 
                 </View> :
@@ -95,5 +100,10 @@ const styles = StyleSheet.create({
     resizeMode: 'cover',
     height: 800,
     width: 800
+  },
+  nightBg: {
+    flex: 1,
+    height: 800,
+    width: '100%'
   }
 });
