@@ -42,7 +42,7 @@ export default class Tree extends Component {
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b7.png')}/>);
     images.push(<Image style={styles.flowers} source={require('../../assets/images/b8.png')}/>);
   
-    for (let i = 0; i < timeout; i++) {
+    for (let i = 0; i <= timeout; i++) {
       let xP = '' + Math.floor(Math.random()*100) + '%';
       let yP = '' + Math.floor(Math.random()*100) + '%';
       let flower = images[Math.floor(Math.random()*images.length)];
