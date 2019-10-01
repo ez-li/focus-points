@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'react-native-slider';
-import { View, TextInput, StyleSheet, Text, Switch } from 'react-native';
+import { View, TextInput, StyleSheet, Text, Switch, Keyboard } from 'react-native';
 
 export default class BuildTree extends Component {
   constructor(props) {
@@ -50,7 +50,12 @@ export default class BuildTree extends Component {
             style={styles.zipcodeInput}
             placeholder="enter zipcode"
             keyboardType={'numeric'}
-            onChangeText={(zipcode) => this.setState({zipcode})}
+            onChangeText={(zipcode) => {
+              this.setState({ zipcode });
+              if (this.state.zipcode.length === 4) {
+                Keyboard.dismiss()
+              }
+            }}
             value={this.state.zipcode}
             maxLength={5}
           />
