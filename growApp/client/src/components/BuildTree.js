@@ -121,13 +121,13 @@ export default class BuildTree extends Component {
             placeholder="enter zipcode"
             placeholderTextColor='grey'
             keyboardType={'numeric'}
+            value={this.state.zipcode}
             onChangeText={(zipcode) => {
               this.setState({ zipcode });
-              if (this.state.zipcode.length === 4) {
+              if (zipcode.length === 5) {
                 Keyboard.dismiss()
               }
             }}
-            value={this.state.zipcode}
             maxLength={5}
           />
         <Button
