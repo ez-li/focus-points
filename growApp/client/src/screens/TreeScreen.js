@@ -10,9 +10,9 @@ export default class TreeScreen extends React.Component {
     this.state = {
 			touchCount: 0,
       timerStarted: false,
-			points: 0
+      points: 0
 		};
-	}
+  }
 	handleOnPress = () => {
 		this.setState((state) => ({
 			touchCount: state.touchCount + 1
@@ -22,13 +22,19 @@ export default class TreeScreen extends React.Component {
 		this.setState({
 			timerStarted: true
 		})
-	}
+  }
+  timeUp = () => {
+    let p = this.state.points;
+    this.props.navigation.navigate('FinishScreen', {
+      points: p
+    })
+  }
 	countPoints = (numOfFlowersRemaining) => {
 		if (numOfFlowersRemaining < 0) {
 			return
-		}
+    }
 		this.setState({
-			points: numOfFlowersRemaining
+      points: numOfFlowersRemaining
 		})
 	}
   render() {
@@ -49,19 +55,30 @@ export default class TreeScreen extends React.Component {
             />
           </View>
 
-					<View style={{height:200}}>
+					<View style={{height:200, alignItems: 'center'}}>
 						<Timer 
 							treeBuild={navigation.getParam('treeBuild')}
-							startTimer={this.startTimer}
+              startTimer={this.startTimer}
+              timeUp={this.timeUp}
 							/>
-							{this.state.timerStarted ? 
-								<Text style={{textAlign:'center', marginTop:-15}}>
-									points: {this.state.points}
-								</Text> :
+              {this.state.timerStarted ? 
+              <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row', marginTop:-25}}>
+                <Image
+                style={styles.smallImage}
+                source={require('../../assets/images/b1.png')}
+                />
+                <Text> = </Text>
+                <Image
+                style={styles.smallImage}
+                source={require('../../assets/images/coin.png')}
+                />
+								<Text style={{textAlign:'center'}}>
+								 {' '}= points: {this.state.points}
+								</Text> 
+                </View> :
 							null
 							}
 					</View>
-
 
 				</View>
 			</TouchableWithoutFeedback>
@@ -69,6 +86,10 @@ export default class TreeScreen extends React.Component {
   }
 }
 const styles = StyleSheet.create({
+  smallImage: {
+    width: 27,
+    height: 27
+  },
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
