@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Button, Text, View, StyleSheet, TouchableWithoutFeedback} from 'react-native';
+import { Image, Button, Text, View, StyleSheet, Vibration, TouchableWithoutFeedback} from 'react-native';
 import Tree from '../components/TreeGenerator.js';
 import Timer from '../components/Timer.js';
 
@@ -19,7 +19,9 @@ export default class TreeScreen extends React.Component {
 	handleOnPress = () => {
 		this.setState((state) => ({
 			touchCount: state.touchCount + 1
-		}))
+    }))
+    const DURATION = 10000;
+    Vibration.vibrate(DURATION);
 	}
 	startTimer = () => {
 		this.setState({

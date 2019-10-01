@@ -81,7 +81,7 @@ export default class BuildTree extends Component {
     }
   }
   getWeather = () => {
-    axios.get('http://localhost:3000/api/weather', {
+    axios.get('http://18.220.121.51:3000/api/weather', {
       params: {
         zipcode: this.state.zipcode
       }
