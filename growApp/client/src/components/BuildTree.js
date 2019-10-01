@@ -25,17 +25,19 @@ export default class BuildTree extends Component {
     this.setState(state => ({
       nightMode: !state.nightMode,
     }));
+    this.props.setNightMode(this.state.nightMode);
   }
   getWeather = () => {
     axios.get('http://localhost:3000/api/weather', {
       params: {
-        zipcode: 94122
+        zipcode: this.state.zipcode
       }
     })
     .then((response) => {
       this.setState({
         weather: response.data
       });
+      this.props.setBackground(response.data);
     })
     .catch((error) => {
       console.log(error);

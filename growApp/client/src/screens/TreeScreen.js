@@ -35,27 +35,31 @@ export default class TreeScreen extends React.Component {
     const { navigation } = this.props;
     return (
 			<TouchableWithoutFeedback onPress={() => this.handleOnPress()}>
-				<View style={{ flex: 1, justifyContent: 'center' }}>
-
-					<Tree 
-						treeBuild={navigation.getParam('treeBuild')}
-						touchCount={this.state.touchCount}
-						timerStarted={this.state.timerStarted}
-						countPoints={this.countPoints}
-					/>
+			
+				<View>
+          <View style={styles.backgroundImage}>
+            { navigation.getParam('background') }
+          </View>
+          <View>
+            <Tree 
+              treeBuild={navigation.getParam('treeBuild')}
+              touchCount={this.state.touchCount}
+              timerStarted={this.state.timerStarted}
+              countPoints={this.countPoints}
+            />
+          </View>
 
 					<View style={{height:200}}>
-					<Timer 
-						treeBuild={navigation.getParam('treeBuild')}
-						startTimer={this.startTimer}
-						/>
-					
-						{this.state.timerStarted ? 
-							<Text style={{textAlign:'center', marginTop:-15}}>
-								points: {this.state.points}
-							</Text> :
-						null
-						}
+						<Timer 
+							treeBuild={navigation.getParam('treeBuild')}
+							startTimer={this.startTimer}
+							/>
+							{this.state.timerStarted ? 
+								<Text style={{textAlign:'center', marginTop:-15}}>
+									points: {this.state.points}
+								</Text> :
+							null
+							}
 					</View>
 
 
@@ -64,3 +68,11 @@ export default class TreeScreen extends React.Component {
     );
   }
 }
+const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    height: 800,
+    width: 800
+  }
+});

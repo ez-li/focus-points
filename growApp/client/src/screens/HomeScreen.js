@@ -9,15 +9,20 @@ const DismissKeyboard = ({ children }) => (
 );
 
 let treeBuild = {};
+let currWeather = [];
+let screenStyle = {};
 export default class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      background: []
+      weather: '',
+      background: [],
+      style: {}
     };
   }
   setBackground = (weather) => {
     let backgroundImg = [];
+    currWeather = weather;
     console.log(weather)
     if (weather === 'Clear') {
       backgroundImg.push(<ImageBackground source={require('../../assets/images/bg_clear.png')} style={styles.backgroundImage} />);
@@ -29,15 +34,26 @@ export default class HomeScreen extends React.Component {
       backgroundImg.push(<ImageBackground source={require('../../assets/images/bg_cloudy.png')} style={styles.backgroundImage} />);
     }
     this.setState({
+      weather: weather,
       background: backgroundImg
     })
-    console.log(this.state.background)
+    currWeather = backgroundImg;
+  }
+  setNightMode = (bool) => {
+    if (bool) {
+      let s = {backgroundColor: 'black', color: 'white'};
+      this.setState({
+        style: s
+      })
+    } else {
+      let s = {backgroundColor: 'white', color: 'black'};
+      this.setState({
+        style: s
+      })
+    }
   }
   treeBuilder = (state) => {
     treeBuild = state;
-    if (state.weather !== '') {
-      this.setBackground(state.weather);
-    }
   }
   render() {
     return (
@@ -65,12 +81,14 @@ export default class HomeScreen extends React.Component {
         <BuildTree 
           treeBuilder={this.treeBuilder}
           setBackground={this.setBackground}
+          setNightMode={this.setNightMode}
         />
         
         <Button
           title="start"
           onPress={() => this.props.navigation.navigate('TreeScreen', {
             treeBuild: treeBuild,
+            background: currWeather
           })}
         /> 
 
@@ -96,7 +114,7 @@ const styles = StyleSheet.create({
   backgroundImage: {
     flex: 1,
     resizeMode: 'cover',
-    height: 500,
-    width: 500
+    height: 800,
+    width: 800
   }
 });
