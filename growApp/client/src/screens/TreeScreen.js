@@ -52,7 +52,7 @@ export default class TreeScreen extends React.Component {
 					
 						{this.state.timerStarted ? 
 							<Text style={{textAlign:'center', marginTop:-15}}>
-								points: {this.state.points - 1}
+								points: {this.state.points}
 							</Text> :
 						null
 						}

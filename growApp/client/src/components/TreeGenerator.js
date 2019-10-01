@@ -25,7 +25,7 @@ export default class Tree extends Component {
           flowers: newFlowers,
           removedFlowers: state.removedFlowers + 1
         }));
-        this.props.countPoints(this.state.initialCount - this.state.removedFlowers)
+        this.props.countPoints(this.state.initialCount - this.state.removedFlowers - 1)
       }
     }
   }
