@@ -17,12 +17,12 @@ export default class Timer extends React.Component {
     this.clockCall = setInterval(() => {
       this.decrementClock();
     }, 1000);
-  }
+  };
   decrementClock = () => {   
     if (this.state.timeout === 1) {
       clearInterval(this.clockCall);
     }   
-    this.setState((prevstate) => ({ timeout: prevstate.timeout-1 }));
+    this.setState((prevstate) => ({ timeout: prevstate.timeout -1 }));
   };
   render() {
     let timeout = this.props.treeBuild.timeout;

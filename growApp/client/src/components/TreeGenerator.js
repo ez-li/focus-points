@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import Slider from 'react-native-slider';
 import { Image, View, TextInput, StyleSheet, Text, Switch } from 'react-native';
 
-export default class BuildTree extends Component {
+export default class Tree extends Component {
   constructor(props) {
     super(props);
     this.state = {
       flowers: [],
+      initialCount: 0,
       removedFlowers: 0,
       timerStarted: false
     };
@@ -24,7 +25,7 @@ export default class BuildTree extends Component {
           flowers: newFlowers,
           removedFlowers: state.removedFlowers + 1
         }));
-        this.props.countPoints(this.state.flowers.length - this.state.removedFlowers + 1)
+        this.props.countPoints(this.state.initialCount - this.state.removedFlowers - 1)
       }
     }
   }
@@ -59,8 +60,10 @@ export default class BuildTree extends Component {
         </View>
       )
     }
+    let count = flowers.length;
     this.setState({
-      flowers: flowers
+      flowers: flowers,
+      initialCount: count
     })
   }
   render() {
