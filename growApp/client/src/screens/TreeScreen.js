@@ -8,8 +8,8 @@ export default class TreeScreen extends React.Component {
 	constructor(props) {
 		super(props);
     this.state = {
-			touchCount: 1,
-			timerStarted: false,
+			touchCount: 0,
+      timerStarted: false,
 			points: 0
 		};
 	}
