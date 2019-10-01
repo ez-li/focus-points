@@ -72,10 +72,15 @@ export default class Tree extends Component {
     return (
       <View style={{ alignItems: 'center'}}>
 
-        <Image
+        {this.props.nightmode ? 
+          <Image
+          style={styles.treeImage}
+          source={require('../../assets/images/tree_night.png')}
+        />
+        : <Image
           style={styles.treeImage}
           source={require('../../assets/images/tree.png')}
-        />
+        />}
 
         <View style={styles.flowersContainer}>
           { this.state.flowers }

@@ -30,7 +30,7 @@ export default class Timer extends React.Component {
     return (
       <View style={{ justifyContent: 'center' }}>
         
-        <Text style={{ paddingTop: 120, textAlign: 'center' }}>
+        <Text style={this.props.nightmode? { color: 'white', paddingTop: 120, textAlign: 'center' } : { color: 'black', paddingTop: 120, textAlign: 'center' }}>
           {this.state.startTimer ? 
             'time to focus: '+ this.state.timeout + ' min' + '\n' : 
             null}

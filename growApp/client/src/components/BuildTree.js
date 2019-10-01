@@ -10,7 +10,20 @@ export default class BuildTree extends Component {
         timeout: 60,
         zipcode: '',
         nightMode: false,
-        weather: ''
+        weather: '',
+        textStyle: {textAlign: 'center'},
+        timeSlider: {
+          textAlign: 'center',
+          width: 250
+        },
+        zipcodeInput: {
+          paddingTop: 5,
+          textAlign: 'center'
+        },
+        daySwitch: {
+          backgroundColor: '#fff',
+          marginBottom: 10
+        }
     };
   }
   componentDidMount() {
@@ -25,7 +38,47 @@ export default class BuildTree extends Component {
     this.setState(state => ({
       nightMode: !state.nightMode,
     }));
-    this.props.setNightMode(this.state.nightMode);
+    this.props.setNightMode(!this.state.nightMode);
+    if (!this.state.nightMode) {
+      this.setState({
+        textStyle: {
+          textAlign: 'center',
+          color: 'white'
+        },
+        timeSlider: {
+          textAlign: 'center',
+          width: 250
+        },
+        zipcodeInput: {
+          paddingTop: 5,
+          textAlign: 'center',
+          color: '#fff',
+        },
+        daySwitch: {
+          // backgroundColor: '#000',
+          marginBottom: 10
+        }
+      })
+    } else {
+      this.setState({
+        textStyle: {
+          textAlign: 'center',
+          color: 'black'
+        },
+        timeSlider: {
+          textAlign: 'center',
+          width: 250
+        },
+        zipcodeInput: {
+          paddingTop: 5,
+          textAlign: 'center'
+        },
+        daySwitch: {
+          // backgroundColor: '#fff',
+          marginBottom: 10
+        }
+      })
+    }
   }
   getWeather = () => {
     axios.get('http://localhost:3000/api/weather', {
@@ -50,22 +103,23 @@ export default class BuildTree extends Component {
 
         <View style={{marginTop: -42, padding: 15, alignItems: 'center'}}>
           <Slider
-            style={styles.timeSlider}
+            style={this.state.timeSlider}
             minimumValue={0}
             maximumValue={120}
             step={1}
             value={this.state.timeout}
             onValueChange={timeout => this.setState({ timeout })}
           />
-          <Text style={{textAlign: 'center'}}>
+          <Text style={this.state.textStyle}>
             {this.state.timeout} minutes
           </Text>
         </View>
 
         <View style={{padding: 15, alignItems: 'center'}}>
           <TextInput
-            style={styles.zipcodeInput}
+            style={this.state.zipcodeInput}
             placeholder="enter zipcode"
+            placeholderTextColor='grey'
             keyboardType={'numeric'}
             onChangeText={(zipcode) => {
               this.setState({ zipcode });
@@ -84,13 +138,13 @@ export default class BuildTree extends Component {
 
         <View style={{padding: 15, alignItems: 'center'}}>
           <Switch
-            style={styles.daySwitch}
+            style={this.state.daySwitch}
             onValueChange={this._handleDaySwitch}
             value={this.state.nightMode}
           />
             { this.state.nightMode ? 
-            <Text>night mode </Text> : 
-            <Text> day mode</Text> }
+            <Text style={this.state.textStyle}>night mode </Text> : 
+            <Text style={this.state.textStyle}> day mode</Text> }
         </View>
 
       </View>
@@ -99,16 +153,5 @@ export default class BuildTree extends Component {
 }
 
 const styles = StyleSheet.create({
-  timeSlider: {
-    textAlign: 'center',
-    width: 250
-  },
-  zipcodeInput: {
-    paddingTop: 5,
-    textAlign: 'center'
-  },
-  daySwitch: {
-    backgroundColor: '#fff',
-    marginBottom: 10
-  }
+
 });
