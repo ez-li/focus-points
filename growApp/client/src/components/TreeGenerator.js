@@ -64,7 +64,7 @@ export default class Tree extends Component {
     this.setState({
       flowers: flowers,
       initialCount: count
-    })
+    });
   }
   render() {
 

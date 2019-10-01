@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Slider from 'react-native-slider';
-import { View, TextInput, StyleSheet, Text, Switch, Keyboard } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, Switch, Keyboard } from 'react-native';
+import axios from 'axios';
 
 export default class BuildTree extends Component {
   constructor(props) {
@@ -8,25 +9,39 @@ export default class BuildTree extends Component {
     this.state = {
         timeout: 60,
         zipcode: '',
-        nightMode: false
+        nightMode: false,
+        weather: ''
     };
   }
-
   componentDidMount() {
     this.props.treeBuilder(this.state);
   }
-
   componentDidUpdate(prevState) {
     if (this.state !== prevState) {
       this.props.treeBuilder(this.state);
     }
   }
+  _handleDaySwitch = () => {
+    this.setState(state => ({
+      nightMode: !state.nightMode,
+    }));
+  }
+  getWeather = () => {
+    axios.get('http://localhost:3000/api/weather', {
+      params: {
+        zipcode: 94122
+      }
+    })
+    .then((response) => {
+      this.setState({
+        weather: response.data
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    })
 
-  _handleDaySwitch = () =>
-  this.setState(state => ({
-    nightMode: !state.nightMode,
-  }));
-
+  }
   render() {
     return (
       <View style={{ justifyContent: 'center' }}>
@@ -45,7 +60,7 @@ export default class BuildTree extends Component {
           </Text>
         </View>
 
-        <View style={{padding: 15}}>
+        <View style={{padding: 15, alignItems: 'center'}}>
           <TextInput
             style={styles.zipcodeInput}
             placeholder="enter zipcode"
@@ -59,6 +74,10 @@ export default class BuildTree extends Component {
             value={this.state.zipcode}
             maxLength={5}
           />
+        <Button
+          title="submit"
+          onPress={this.getWeather}
+        /> 
         </View>
 
         <View style={{padding: 15, alignItems: 'center'}}>
