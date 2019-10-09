@@ -28,13 +28,24 @@ From within the root directory:
 npm install
 ```
 
+From within the app directory:
+```sh
+npm install
+npm install -g expo-cli
+```
+
 ## Usage
 
 > Some usage instructions
 
-To start server
+To start express server in server directory:
 ```sh
 npm run server-dev
+```
+
+To start expo app simulator in production mode:
+```sh
+npm run start
 ```
 
 ## API-Routes
