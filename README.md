@@ -57,7 +57,7 @@ npm run start
 ## Screenshots
 
 ### Homepage with Rainy Weather in Zip Code
-![Focus Points Home Page](https://imgur.com/a/hYC47BS)
+![Focus Points Home Page](https://github.com/ez-li/focus-points/blob/master/screenshots/homepage_rain.png)
 
 ### Timer Started
-![Focus Points Timer and Point Counter](https://imgur.com/a/Rw1W8ts)
+![Focus Points Timer and Point Counter](https://github.com/ez-li/focus-points/blob/master/screenshots/timer_counter.png)
