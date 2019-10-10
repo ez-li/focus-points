@@ -57,13 +57,13 @@ npm run start
 ## Screenshots
 
 ### Homepage with Rainy Weather in Zip Code
-![Focus Points Home Page](https://github.com/ez-li/focus-points/blob/master/screenshots/homepage_rain.png)
+![Focus Points Home Page](https://github.com/ez-li/focus-points/blob/master/screenshots/homepage_rain.png | width=100)
 
 ### Timer Started
-![Focus Points Timer and Point Counter](https://github.com/ez-li/focus-points/blob/master/screenshots/timer_screen.png)
+![Focus Points Timer and Point Counter](https://github.com/ez-li/focus-points/blob/master/screenshots/timer_screen.png | width=100)
 
 ### After user clicks phone, points lost
-![Focus Points Counter After User Clicks Screen](https://github.com/ez-li/focus-points/blob/master/screenshots/points_deducted.png)
+![Focus Points Counter After User Clicks Screen](https://github.com/ez-li/focus-points/blob/master/screenshots/points_deducted.png | width=100)
 
 ### Timer Ended, Count Points
-![Timer Ended, User Gets Points](https://github.com/ez-li/focus-points/blob/master/screenshots/end_screen.png)
+![Timer Ended, User Gets Points](https://github.com/ez-li/focus-points/blob/master/screenshots/end_screen.png | width=100)
