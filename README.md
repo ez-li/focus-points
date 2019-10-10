@@ -60,4 +60,10 @@ npm run start
 ![Focus Points Home Page](https://github.com/ez-li/focus-points/blob/master/screenshots/homepage_rain.png)
 
 ### Timer Started
-![Focus Points Timer and Point Counter](https://github.com/ez-li/focus-points/blob/master/screenshots/timer_counter.png)
+![Focus Points Timer and Point Counter](https://github.com/ez-li/focus-points/blob/master/screenshots/timer_screen.png)
+
+### After user clicks phone, points lost
+![Focus Points Counter After User Clicks Screen](https://github.com/ez-li/focus-points/blob/master/screenshots/points_deducted.png)
+
+### Timer Ended, Count Points
+![Timer Ended, User Gets Points](https://github.com/ez-li/focus-points/blob/master/screenshots/end_screen.png)
